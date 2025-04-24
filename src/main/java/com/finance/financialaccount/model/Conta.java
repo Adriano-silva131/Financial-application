@@ -1,18 +1,28 @@
-package com.finance.financialaccount.model;
+    package com.finance.financialaccount.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+    import jakarta.persistence.*;
 
-import java.math.BigDecimal;
+    import java.math.BigDecimal;
 
 @Entity
 public class Conta {
+
+    public Conta () {
+
+    }
+
+    public Conta(String nome, BigDecimal saldoConta, BigDecimal saldoCredito, Usuario usuario) {
+        this.nome = nome;
+        this.saldoConta = saldoConta;
+        this.saldoCredito = saldoCredito;
+        this.usuario = usuario;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome_conta", nullable = false)
     private String nome;
 
     @Column(name = "saldo_conta")

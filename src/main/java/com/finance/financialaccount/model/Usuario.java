@@ -4,7 +4,16 @@ import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
+@Table(name = "usuarios")
 public class Usuario {
+
+    public Usuario(String nome, String email) {
+        this.nome = nome;
+        this.email = email;
+    }
+
+    public Usuario() {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

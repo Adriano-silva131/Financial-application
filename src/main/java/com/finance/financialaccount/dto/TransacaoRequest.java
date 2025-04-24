@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 public class TransacaoRequest {
 
+    @NotNull
     private String descricao;
 
     @NotNull
