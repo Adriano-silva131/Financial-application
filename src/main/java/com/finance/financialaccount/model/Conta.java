@@ -5,6 +5,7 @@
     import java.math.BigDecimal;
 
 @Entity
+@Table(name = "contas")
 public class Conta {
 
     public Conta () {

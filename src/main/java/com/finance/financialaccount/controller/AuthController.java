@@ -3,7 +3,6 @@ package com.finance.financialaccount.controller;
 import com.finance.financialaccount.dto.CredenciaisDTO;
 import com.finance.financialaccount.dto.TokenDTO;
 import com.finance.financialaccount.service.TokenService;
-import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +26,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<TokenDTO> login(@RequestBody CredenciaisDTO cred) {
         Authentication authentication = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(cred.username(), cred.password())
+                new UsernamePasswordAuthenticationToken(cred.email(), cred.password())
         );
         String jwt = tokenService.gerarToken(authentication);
         return ResponseEntity.ok(new TokenDTO(jwt));
