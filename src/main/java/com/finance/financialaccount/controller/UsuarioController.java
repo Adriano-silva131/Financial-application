@@ -1,6 +1,6 @@
 package com.finance.financialaccount.controller;
 
-import com.finance.financialaccount.dto.NewUsuarioDTO;
+import com.finance.financialaccount.dto.NovoUsuarioDTO;
 import com.finance.financialaccount.dto.UsuarioDTO;
 import com.finance.financialaccount.model.Usuario;
 import com.finance.financialaccount.service.UsuarioService;
@@ -25,9 +25,9 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<NewUsuarioDTO> create(@Valid @RequestBody UsuarioDTO usuarioDTO) {
+    public ResponseEntity<NovoUsuarioDTO> create(@Valid @RequestBody UsuarioDTO usuarioDTO) {
             Usuario usuarioCriado = usuarioService.create(usuarioDTO.toEntity());
             URI location = URI.create(String.format("/api/usuarios/%s", usuarioCriado.getId()));
-            return ResponseEntity.created(location).body(new NewUsuarioDTO(usuarioCriado.getNome(), usuarioCriado.getEmail()));
+            return ResponseEntity.created(location).body(new NovoUsuarioDTO(usuarioCriado.getNome(), usuarioCriado.getEmail()));
     }
 }

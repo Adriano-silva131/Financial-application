@@ -8,13 +8,9 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
 
-public record ContaRequest(
+public record ContaDTO(
         @NotBlank(message = "O campo nome é obrigatório.") String nome,
         @PositiveOrZero(message = "Saldo da conta deve ser ≥ 0") BigDecimal saldoConta,
         @PositiveOrZero(message = "Saldo de crédito deve ser ≥ 0") BigDecimal saldoCredito,
-        @NotNull(message = "O usuário não pode ser nulo.") Usuario usuario) {
-
-    public Conta toEntity() {
-        return new Conta(nome, saldoConta, saldoCredito, usuario);
-    }
+        @NotNull(message = "O usuário não pode ser nulo.") Long usuarioID) {
 }

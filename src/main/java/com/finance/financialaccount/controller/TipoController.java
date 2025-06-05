@@ -1,6 +1,6 @@
 package com.finance.financialaccount.controller;
 
-import com.finance.financialaccount.dto.TipoRequest;
+import com.finance.financialaccount.dto.TipoDTO;
 import com.finance.financialaccount.model.Tipo;
 import com.finance.financialaccount.service.TipoService;
 import jakarta.validation.Valid;
@@ -18,7 +18,7 @@ public class TipoController {
     private TipoService tipoService;
 
     @PostMapping
-    public ResponseEntity<Tipo> create (@Valid @RequestBody TipoRequest tipoRequest) {
+    public ResponseEntity<Tipo> create (@Valid @RequestBody TipoDTO tipoRequest) {
         Tipo tipo = new Tipo();
         tipo.setNome(tipoRequest.getNome());
         tipo.setDescricao(tipoRequest.getDescricao());

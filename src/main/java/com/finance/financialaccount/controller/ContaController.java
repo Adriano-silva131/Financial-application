@@ -1,6 +1,7 @@
 package com.finance.financialaccount.controller;
 
-import com.finance.financialaccount.dto.ContaRequest;
+import com.finance.financialaccount.dto.ContaDTO;
+import com.finance.financialaccount.dto.ContaResponseDTO;
 import com.finance.financialaccount.model.Conta;
 import com.finance.financialaccount.service.ContaService;
 import jakarta.validation.Valid;
@@ -25,9 +26,9 @@ public class ContaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody ContaRequest contaRequest) {
-            Conta contaSalva = contaService.create(contaRequest.toEntity());
-            URI location = URI.create(String.format("/api/contas/%s", contaSalva.getId()));
+    public ResponseEntity<?> create(@Valid @RequestBody ContaDTO contaDTO) {
+            ContaResponseDTO contaSalva = contaService.create(contaDTO);
+            URI location = URI.create(String.format("/api/contas/%s", contaSalva.id()));
             return ResponseEntity.created(location).body(contaSalva);
     }
 }

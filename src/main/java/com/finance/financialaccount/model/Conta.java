@@ -1,6 +1,7 @@
     package com.finance.financialaccount.model;
 
     import jakarta.persistence.*;
+    import jakarta.validation.constraints.NotBlank;
 
     import java.math.BigDecimal;
 
@@ -12,11 +13,22 @@ public class Conta {
 
     }
 
-    public Conta(String nome, BigDecimal saldoConta, BigDecimal saldoCredito, Usuario usuario) {
+    Conta(String nome, BigDecimal saldoConta, BigDecimal saldoCredito, Usuario usuario) {
         this.nome = nome;
         this.saldoConta = saldoConta;
         this.saldoCredito = saldoCredito;
         this.usuario = usuario;
+    }
+
+    public Conta(Usuario usuario, String nome) {
+        this.usuario = usuario;
+        this.nome = nome;
+        calcularSaldoInicial();
+    }
+
+    void calcularSaldoInicial() {
+        this.saldoConta = BigDecimal.ZERO;
+        this.saldoCredito = BigDecimal.ZERO;
     }
 
     @Id

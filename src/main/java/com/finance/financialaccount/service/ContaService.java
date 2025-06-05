@@ -1,5 +1,7 @@
 package com.finance.financialaccount.service;
 
+import com.finance.financialaccount.dto.ContaDTO;
+import com.finance.financialaccount.dto.ContaResponseDTO;
 import com.finance.financialaccount.exception.conta.ContaDuplicadaException;
 import com.finance.financialaccount.exception.usuario.UsuarioNaoEncontradoException;
 import com.finance.financialaccount.model.Conta;
@@ -23,25 +25,21 @@ public class ContaService {
     }
 
     @Transactional
-    public Conta create(Conta conta) {
-        Usuario usuario = usuarioService.findById(conta.getUsuario().getId())
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuario com o id: " + conta.getUsuario().getId() + " não foi encontrado"));
+    public ContaResponseDTO create(ContaDTO contaDTO) {
 
-        if(contaRepository.existsByNomeAndUsuarioId(conta.getNome(), usuario.getId())) {
-            throw new ContaDuplicadaException("Esta conta já está vinculada a este usuário");
-        }
+        Usuario usuario = getByIdOrThrow(contaDTO.usuarioID());
 
-        conta.setUsuario(usuario);
-        atualizarSaldoConta(conta);
+        contaRepository.findByNomeAndUsuarioId(contaDTO.nome(), usuario.getId())
+                .ifPresent(c -> {throw new ContaDuplicadaException("Esta conta já está vinculada a este usuário");});
+
+        Conta conta = new Conta(usuario, contaDTO.nome());
         contaRepository.save(conta);
 
-        return conta;
+        return ContaResponseDTO.from(conta);
     }
 
-    private void atualizarSaldoConta(Conta conta) {
-        if (conta.getSaldoConta() == null && conta.getSaldoCredito() == null) {
-            conta.setSaldoConta(BigDecimal.ZERO);
-            conta.setSaldoCredito(BigDecimal.ZERO);
-        }
+    private Usuario getByIdOrThrow(Long id) {
+        return usuarioService.findById(id)
+                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuario com o id: " + id + " não foi encontrado"));
     }
 }
