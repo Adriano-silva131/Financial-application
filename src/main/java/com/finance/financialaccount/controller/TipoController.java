@@ -18,10 +18,10 @@ public class TipoController {
     private TipoService tipoService;
 
     @PostMapping
-    public ResponseEntity<Tipo> create (@Valid @RequestBody TipoDTO tipoRequest) {
+    public ResponseEntity<Tipo> create (@Valid @RequestBody TipoDTO TipoDTO) {
         Tipo tipo = new Tipo();
-        tipo.setNome(tipoRequest.getNome());
-        tipo.setDescricao(tipoRequest.getDescricao());
+        tipo.setNome(TipoDTO.nome());
+        tipo.setDescricao(TipoDTO.descricao());
         Tipo tipoCriado = tipoService.create(tipo);
 
         return ResponseEntity.ok(tipoCriado);

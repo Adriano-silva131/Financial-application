@@ -1,6 +1,6 @@
 package com.finance.financialaccount.controller;
 
-import com.finance.financialaccount.dto.CategoriaRequest;
+import com.finance.financialaccount.dto.CategoriaDTO;
 import com.finance.financialaccount.model.Categoria;
 import com.finance.financialaccount.service.CategoriaService;
 import jakarta.validation.Valid;
@@ -22,10 +22,10 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> create(@Valid @RequestBody CategoriaRequest categoriaRequest) {
+    public ResponseEntity<Categoria> create(@Valid @RequestBody CategoriaDTO categoriaDTO) {
         Categoria categoria = new Categoria();
-        categoria.setNome(categoriaRequest.getNome());
-        categoria.setDescricao(categoriaRequest.getDescricao());
+        categoria.setNome(categoriaDTO.nome());
+        categoria.setDescricao(categoriaDTO.descricao());
 
         Categoria categoriaCriada = categoriaService.create(categoria);
 

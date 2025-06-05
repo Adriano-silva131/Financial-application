@@ -8,7 +8,7 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public record TransacaoRequest (
+public record TransacaoDTO(
     @NotNull
     String descricao,
 
