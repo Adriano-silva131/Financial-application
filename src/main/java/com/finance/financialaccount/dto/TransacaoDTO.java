@@ -1,8 +1,8 @@
 package com.finance.financialaccount.dto;
 
+import com.finance.financialaccount.enums.TipoTransacao;
 import com.finance.financialaccount.model.Categoria;
 import com.finance.financialaccount.model.Conta;
-import com.finance.financialaccount.model.Tipo;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
@@ -22,7 +22,7 @@ public record TransacaoDTO(
     LocalDate data,
 
     @NotNull
-    Tipo tipo,
+    TipoTransacao tipo,
 
     @NotNull
     Categoria categoria,

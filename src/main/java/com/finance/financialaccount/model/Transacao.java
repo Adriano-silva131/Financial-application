@@ -1,5 +1,6 @@
 package com.finance.financialaccount.model;
 
+import com.finance.financialaccount.enums.TipoTransacao;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -15,9 +16,9 @@ public class Transacao {
     private BigDecimal valor;
     private LocalDate data;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_id")
-    private Tipo tipo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo", length = 50)
+    private TipoTransacao tipo;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -59,14 +60,6 @@ public class Transacao {
         this.data = data;
     }
 
-    public Tipo getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
-
     public Categoria getCategoria() {
         return categoria;
     }
@@ -81,5 +74,13 @@ public class Transacao {
 
     public void setConta(Conta conta) {
         this.conta = conta;
+    }
+
+    public TipoTransacao getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoTransacao tipo) {
+        this.tipo = tipo;
     }
 }

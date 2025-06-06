@@ -1,0 +1,1 @@
+ALTER TABLE transacoes ADD tipo VARCHAR(50) NOT NULL;
