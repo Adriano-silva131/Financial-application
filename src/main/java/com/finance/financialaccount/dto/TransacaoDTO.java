@@ -1,5 +1,6 @@
 package com.finance.financialaccount.dto;
 
+import com.finance.financialaccount.enums.MetodoPagamento;
 import com.finance.financialaccount.enums.TipoTransacao;
 import com.finance.financialaccount.model.Categoria;
 import com.finance.financialaccount.model.Conta;
@@ -23,6 +24,9 @@ public record TransacaoDTO(
 
     @NotNull
     TipoTransacao tipo,
+
+    @NotNull
+    MetodoPagamento metodoPagamento,
 
     @NotNull
     Categoria categoria,

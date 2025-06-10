@@ -1,6 +1,7 @@
 package com.finance.financialaccount.controller;
 
 import com.finance.financialaccount.dto.CategoriaDTO;
+import com.finance.financialaccount.dto.CategoriaResponseDTO;
 import com.finance.financialaccount.model.Categoria;
 import com.finance.financialaccount.service.CategoriaService;
 import jakarta.validation.Valid;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/categorias")
@@ -22,14 +25,9 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> create(@Valid @RequestBody CategoriaDTO categoriaDTO) {
-        Categoria categoria = new Categoria();
-        categoria.setNome(categoriaDTO.nome());
-        categoria.setDescricao(categoriaDTO.descricao());
-
-        Categoria categoriaCriada = categoriaService.create(categoria);
-
-        return ResponseEntity.ok(categoriaCriada);
-
+    public ResponseEntity<CategoriaResponseDTO> create(@Valid @RequestBody CategoriaDTO categoriaDTO) {
+        CategoriaResponseDTO categoriaCriada = categoriaService.create(categoriaDTO);
+        URI location = URI.create(String.format("/api/categorias/%s", categoriaCriada.id()));
+        return ResponseEntity.created(location).body(categoriaCriada);
     }
 }

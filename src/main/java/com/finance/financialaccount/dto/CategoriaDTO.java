@@ -10,6 +10,6 @@ public record CategoriaDTO(
     String nome,
 
     @NotBlank
-    @Size(min = 5, max = 50, message = "O valor mínimo é de 5 caracteres e o máximo é de 200")
+    @Size(min = 5, max = 200, message = "O valor mínimo é de 5 caracteres e o máximo é de 200")
     String descricao
 ) {}

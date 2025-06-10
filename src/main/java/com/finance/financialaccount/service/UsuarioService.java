@@ -31,7 +31,7 @@ public class UsuarioService implements UserDetailsService {
     @Transactional
     public Usuario create(Usuario usuario) {
         if(usuarioRepository.existsByEmail(usuario.getEmail())) {
-            throw new UsuarioDuplicadoException("Usuário com este e-mail já encontrado no sistema");
+            throw new UsuarioDuplicadoException("Falha no cadastro. Verifique suas informações e tente novamente.");
         }
 
         Usuario user = new Usuario(usuario.getNome(), usuario.getEmail(), passwordEncoder.encode(usuario.getPassword()));

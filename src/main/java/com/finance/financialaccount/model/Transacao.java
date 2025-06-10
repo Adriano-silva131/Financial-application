@@ -1,5 +1,6 @@
 package com.finance.financialaccount.model;
 
+import com.finance.financialaccount.enums.MetodoPagamento;
 import com.finance.financialaccount.enums.TipoTransacao;
 import jakarta.persistence.*;
 
@@ -19,6 +20,10 @@ public class Transacao {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo", length = 50)
     private TipoTransacao tipo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "metodo_pagamento", length = 50)
+    private MetodoPagamento metodoPagamento;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -82,5 +87,13 @@ public class Transacao {
 
     public void setTipo(TipoTransacao tipo) {
         this.tipo = tipo;
+    }
+
+    public MetodoPagamento getMetodoPagamento() {
+        return metodoPagamento;
+    }
+
+    public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
     }
 }

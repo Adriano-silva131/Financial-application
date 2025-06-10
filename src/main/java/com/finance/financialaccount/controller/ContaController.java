@@ -26,7 +26,7 @@ public class ContaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody ContaDTO contaDTO) {
+    public ResponseEntity<ContaResponseDTO> create(@Valid @RequestBody ContaDTO contaDTO) {
             ContaResponseDTO contaSalva = contaService.create(contaDTO);
             URI location = URI.create(String.format("/api/contas/%s", contaSalva.id()));
             return ResponseEntity.created(location).body(contaSalva);

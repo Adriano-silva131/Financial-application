@@ -11,6 +11,14 @@ public class Categoria {
     private String nome;
     private String descricao;
 
+    public Categoria() {
+    }
+
+    public Categoria(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
     public Long getId() {
         return id;
     }
