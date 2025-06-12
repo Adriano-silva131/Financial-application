@@ -10,6 +10,21 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "transacoes")
 public class Transacao {
+
+    public Transacao() {
+
+    }
+
+    public Transacao(String descricao, BigDecimal valor, LocalDate data, TipoTransacao tipo, MetodoPagamento metodoPagamento, Categoria categoria, Conta conta) {
+        this.descricao = descricao;
+        this.valor = valor;
+        this.data = data;
+        this.tipo = tipo;
+        this.metodoPagamento = metodoPagamento;
+        this.categoria = categoria;
+        this.conta = conta;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,6 +47,7 @@ public class Transacao {
     @ManyToOne
     @JoinColumn(name = "conta_id")
     private Conta conta;
+
 
     public Long getId() {
         return id;

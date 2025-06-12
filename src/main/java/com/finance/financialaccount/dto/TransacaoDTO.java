@@ -29,8 +29,8 @@ public record TransacaoDTO(
     MetodoPagamento metodoPagamento,
 
     @NotNull
-    Categoria categoria,
+    Long categoriaId,
 
     @NotNull
-    Conta conta
+    Long contaId
 ) {}
