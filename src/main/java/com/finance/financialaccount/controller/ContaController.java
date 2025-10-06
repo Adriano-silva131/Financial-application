@@ -2,11 +2,12 @@ package com.finance.financialaccount.controller;
 
 import com.finance.financialaccount.dto.ContaDTO;
 import com.finance.financialaccount.dto.ContaResponseDTO;
-import com.finance.financialaccount.model.Conta;
+import com.finance.financialaccount.model.Usuario;
 import com.finance.financialaccount.service.ContaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +27,8 @@ public class ContaController {
     }
 
     @PostMapping
-    public ResponseEntity<ContaResponseDTO> create(@Valid @RequestBody ContaDTO contaDTO) {
-            ContaResponseDTO contaSalva = contaService.create(contaDTO);
+    public ResponseEntity<ContaResponseDTO> create(@Valid @RequestBody ContaDTO contaDTO, @AuthenticationPrincipal Usuario usuario) {
+            ContaResponseDTO contaSalva = contaService.create(contaDTO, usuario);
             URI location = URI.create(String.format("/api/contas/%s", contaSalva.id()));
             return ResponseEntity.created(location).body(contaSalva);
     }

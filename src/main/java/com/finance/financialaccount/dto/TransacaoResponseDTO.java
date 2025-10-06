@@ -2,10 +2,12 @@ package com.finance.financialaccount.dto;
 
 import com.finance.financialaccount.model.Transacao;
 
+import java.math.BigDecimal;
+
 public record TransacaoResponseDTO(
     Long id,
     String descricao,
-    Double valor,
+    BigDecimal valor,
     String dataTransacao,
     String tipoTransacao,
     String categoriaNome,
@@ -15,7 +17,7 @@ public record TransacaoResponseDTO(
         return new TransacaoResponseDTO(
                 transacao.getId(),
                 transacao.getDescricao(),
-                transacao.getValor().doubleValue(),
+                transacao.getValor(),
                 transacao.getData().toString(),
                 transacao.getTipo().getDescricao(),
                 transacao.getCategoria().getNome(),

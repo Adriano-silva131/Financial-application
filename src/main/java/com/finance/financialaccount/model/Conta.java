@@ -44,6 +44,9 @@ public class Conta {
     @Column(name = "saldo_credito")
     private BigDecimal saldoCredito;
 
+    @Version
+    private Long version;
+
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;

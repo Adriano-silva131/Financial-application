@@ -11,6 +11,5 @@ import java.math.BigDecimal;
 public record ContaDTO(
         @NotBlank(message = "O campo nome é obrigatório.") String nome,
         @PositiveOrZero(message = "Saldo da conta deve ser ≥ 0") BigDecimal saldoConta,
-        @PositiveOrZero(message = "Saldo de crédito deve ser ≥ 0") BigDecimal saldoCredito,
-        @NotNull(message = "O usuário não pode ser nulo.") Long usuarioID) {
+        @PositiveOrZero(message = "Saldo de crédito deve ser ≥ 0") BigDecimal saldoCredito) {
 }

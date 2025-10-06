@@ -1,6 +1,7 @@
 package com.finance.financialaccount.dto;
 
 
+import com.finance.financialaccount.model.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
