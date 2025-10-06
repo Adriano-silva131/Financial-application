@@ -1,0 +1,1 @@
+ALTER TABLE categorias ADD COLUMN usuario_id BIGINT, ADD CONSTRAINT fk_categoria_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id);

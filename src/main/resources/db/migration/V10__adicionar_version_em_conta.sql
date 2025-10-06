@@ -1,0 +1,2 @@
+ALTER TABLE contas
+ADD COLUMN version BIGINT DEFAULT 0;

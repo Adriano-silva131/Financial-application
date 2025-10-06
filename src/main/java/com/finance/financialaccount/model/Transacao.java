@@ -1,5 +1,7 @@
 package com.finance.financialaccount.model;
 
+import com.finance.financialaccount.enums.MetodoPagamento;
+import com.finance.financialaccount.enums.TipoTransacao;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -8,6 +10,21 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "transacoes")
 public class Transacao {
+
+    public Transacao() {
+
+    }
+
+    public Transacao(String descricao, BigDecimal valor, LocalDate data, TipoTransacao tipo, MetodoPagamento metodoPagamento, Categoria categoria, Conta conta) {
+        this.descricao = descricao;
+        this.valor = valor;
+        this.data = data;
+        this.tipo = tipo;
+        this.metodoPagamento = metodoPagamento;
+        this.categoria = categoria;
+        this.conta = conta;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,9 +32,13 @@ public class Transacao {
     private BigDecimal valor;
     private LocalDate data;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_id")
-    private Tipo tipo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo", length = 50)
+    private TipoTransacao tipo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "metodo_pagamento", length = 50)
+    private MetodoPagamento metodoPagamento;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -26,6 +47,7 @@ public class Transacao {
     @ManyToOne
     @JoinColumn(name = "conta_id")
     private Conta conta;
+
 
     public Long getId() {
         return id;
@@ -59,14 +81,6 @@ public class Transacao {
         this.data = data;
     }
 
-    public Tipo getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
-
     public Categoria getCategoria() {
         return categoria;
     }
@@ -81,5 +95,21 @@ public class Transacao {
 
     public void setConta(Conta conta) {
         this.conta = conta;
+    }
+
+    public TipoTransacao getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoTransacao tipo) {
+        this.tipo = tipo;
+    }
+
+    public MetodoPagamento getMetodoPagamento() {
+        return metodoPagamento;
+    }
+
+    public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
     }
 }

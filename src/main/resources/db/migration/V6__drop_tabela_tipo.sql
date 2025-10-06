@@ -1,0 +1,3 @@
+ALTER TABLE transacoes DROP FOREIGN KEY fk_tipo;
+ALTER TABLE transacoes DROP COLUMN tipo_id;
+DROP TABLE IF EXISTS tipos;

@@ -5,7 +5,7 @@ public class UsuarioDuplicadoException extends RuntimeException {
 
     public UsuarioDuplicadoException(String message) {
         super(message);
-        this.code = "DUPLICATE_USER";
+        this.code = "USER_ERROR";
     }
 
     public String getCode() {
